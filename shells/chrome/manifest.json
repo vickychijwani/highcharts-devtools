@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+  "name": "Highcharts Developer Tools",
+  "description": "Adds Highcharts debugging tools to the Chrome Developer Tools.",
+  "version": "0.1.0",
+  "minimum_chrome_version": "44",
+  "devtools_page": "main.html",
+  "web_accessible_resources": ["main.html", "panel.html", "build/backend.min.js"],
+  "background": {
+    "scripts": ["build/background.min.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["build/content-script.min.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "permissions": [
+    "http://*/",
+    "https://*/*"
+  ]
+}
